@@ -1,13 +1,14 @@
-    
 pipeline {
     agent{node('master')}
     stages {
+        
         stage('Dowload project') {
             steps {
+                
                 script {
                     cleanWs()
-                    //git(branch: 'master', credentialsId: 'IlyaBurakGit', url: 'https://github.com/ilyaburak/study_jenkins.git')
                 }
+                
                 script {
                     echo 'Start download project'
                     checkout([$class                           : 'GitSCM',
@@ -16,10 +17,11 @@ pipeline {
                               extensions                       : [[$class           : 'RelativeTargetDirectory',
                                                                    relativeTargetDir: 'auto']],
                               submoduleCfg                     : [],
-                              userRemoteConfigs                : [[credentialsId: 'IlyaBurakGit', url: 'https://github.com/ilyaburak/study_jenkins.git']]])
+                              userRemoteConfigs                : [[credentialsId: 'LizaBalabanovaGit', url: 'https://github.com/Balabanova/study_jenkins.git']]])
                 }
             }
         }
+        
         stage ('Create docker image'){
             steps{
                 script{
@@ -28,9 +30,6 @@ pipeline {
                     sh "docker exec -it webapp "df -h > ~/proc""
                 }
             }
-        }
-        
-    }
-
-    
+        }    
+    }   
 }
