@@ -1,5 +1,5 @@
 pipeline {
-    agent{node('master')}
+    agent {node('master')}
     stages {
     stage ('Download from git'){
         checkout([$class: 'GitSCM',
@@ -8,11 +8,7 @@ pipeline {
                     extensions: [[$class: 'RelativeTargetDirectory',
                     relativeTargetDir: 'test']],
                     submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'IlyaBurakGit',url: 'https://github.com/ilyaburak/study_jenkins.git']]])
-                
-      }
-        
-       
-    }
-    
+                    userRemoteConfigs: [[credentialsId: 'LizaBalabanovaGit',url: 'https://github.com/Balabanova/study_jenkins.git']]])         
+      }              
+   }    
 }
